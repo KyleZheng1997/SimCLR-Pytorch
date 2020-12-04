@@ -117,8 +117,7 @@ def main():
     torch.backends.cudnn.benchmark = True
 
 
-    # feel free to change your 
-
+    # feel free to change your dataset setup
     # use weak augmentation for warmup
     weak_aug_train_dataset = ImagenetContrastive(aug=weak_contrastive_aug)
     weak_aug_train_sampler = torch.utils.data.distributed.DistributedSampler(weak_aug_train_dataset)
