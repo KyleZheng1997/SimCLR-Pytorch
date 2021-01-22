@@ -12,15 +12,13 @@ class MLP(nn.Module):
         self.bn1 = nn.BatchNorm1d(dim_mlp)
         self.relu = nn.ReLU(True)
         self.linear2 = nn.Linear(dim_mlp, dim_out)
-        self.bn2 = nn.BatchNorm1d(dim_out)
         
         
     def forward(self, x):
         x = self.linear1(x).unsqueeze(-1).unsqueeze(-1)
         x = self.bn1(x).squeeze(-1).squeeze(-1)
         x = self.relu(x)
-        x = self.linear2(x).unsqueeze(-1).unsqueeze(-1)
-        x = self.bn2(x).squeeze(-1).squeeze(-1)
+        x = self.linear2(x)
         return x
 
 
