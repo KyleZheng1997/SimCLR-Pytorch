@@ -20,7 +20,7 @@ class Simclr(nn.Module):
         feat = nn.functional.normalize(self.encoder_q(torch.cat([x1, x2])))
         other = concat_all_gather(feat, rank)
 
-        prob = feat @ torch.cat([feat, other]).T / 0.5
+        prob = feat @ torch.cat([feat, other]).T / 0.1
         diagnal_mask = (1 - torch.eye(prob.size(0), prob.size(1))).bool().cuda()
         logits = torch.masked_select(prob, diagnal_mask).reshape(prob.size(0), -1)
 
